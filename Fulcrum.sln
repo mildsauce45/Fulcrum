@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fulcrum", "Fulcrum\Fulcrum.csproj", "{861B0034-4BDE-4916-B10C-53CD184E4495}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{0C6061CF-F650-4974-8CD4-63787EE2E5BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fulcrum.Emitter", "Fulcrum.Emitter\Fulcrum.Emitter.csproj", "{EB09AC51-5AAB-4799-ABE9-762ECDB94CA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fulcrum.UnitTests", "Fulcrum.UnitTests\Fulcrum.UnitTests.csproj", "{288075D9-5709-4FAE-8FD4-7AEE36EB3353}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EchoService", "EchoService\EchoService.csproj", "{60812D17-DF67-42C6-9EBA-67EDA6034A32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		EchoService|Any CPU = EchoService|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{861B0034-4BDE-4916-B10C-53CD184E4495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861B0034-4BDE-4916-B10C-53CD184E4495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861B0034-4BDE-4916-B10C-53CD184E4495}.EchoService|Any CPU.ActiveCfg = EchoService|Any CPU
+		{861B0034-4BDE-4916-B10C-53CD184E4495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861B0034-4BDE-4916-B10C-53CD184E4495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB09AC51-5AAB-4799-ABE9-762ECDB94CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB09AC51-5AAB-4799-ABE9-762ECDB94CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB09AC51-5AAB-4799-ABE9-762ECDB94CA6}.EchoService|Any CPU.ActiveCfg = EchoService|Any CPU
+		{EB09AC51-5AAB-4799-ABE9-762ECDB94CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB09AC51-5AAB-4799-ABE9-762ECDB94CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288075D9-5709-4FAE-8FD4-7AEE36EB3353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288075D9-5709-4FAE-8FD4-7AEE36EB3353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288075D9-5709-4FAE-8FD4-7AEE36EB3353}.EchoService|Any CPU.ActiveCfg = EchoService|Any CPU
+		{288075D9-5709-4FAE-8FD4-7AEE36EB3353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288075D9-5709-4FAE-8FD4-7AEE36EB3353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32}.EchoService|Any CPU.ActiveCfg = EchoService|Any CPU
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32}.EchoService|Any CPU.Build.0 = EchoService|Any CPU
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{288075D9-5709-4FAE-8FD4-7AEE36EB3353} = {0C6061CF-F650-4974-8CD4-63787EE2E5BD}
+		{60812D17-DF67-42C6-9EBA-67EDA6034A32} = {0C6061CF-F650-4974-8CD4-63787EE2E5BD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F28FA3A6-BDA3-4DE8-94C0-7BE5FE6241B7}
+	EndGlobalSection
+EndGlobal
