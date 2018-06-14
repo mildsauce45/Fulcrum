@@ -7,24 +7,24 @@ namespace Fulcrum.Models
 {
     internal class ParameterConfig
     {
-        public string Name { get; }
-        public string Alias { get; internal set; }
+        private IEnumerable<ParameterAttribute> _attributes;
+
+        internal string Name { get; }
+        internal string Alias { get; set; }
 
         internal bool IsRouteReplacement { get; set; }
         internal bool IsQueryParams { get; set; }
         internal bool IsRequestHeader { get; set; }
-        internal bool IsRequestBody { get; set; }
+        internal bool IsRequestBody { get; set; }        
 
-        private IEnumerable<ParameterAttribute> _attributes { get; set; }
-
-        public ParameterConfig(ParameterInfo parameter)
+        internal ParameterConfig(ParameterInfo parameter)
         {
             Name = parameter.Name;
 
             InspectParameter(parameter);
         }
 
-        public string ReplaceRoute(string url, object value)
+        internal string ReplaceRoute(string url, object value)
         {
             if (!IsRouteReplacement)
                 return url;
@@ -34,7 +34,7 @@ namespace Fulcrum.Models
             return url.Replace(replacementString, value?.ToString());
         }
 
-        public HeaderCollection GetHeaders(object value)
+        internal HeaderCollection GetHeaders(object value)
         {
             if (!IsRequestHeader)
                 return null;

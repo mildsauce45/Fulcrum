@@ -8,13 +8,13 @@ namespace Fulcrum.Models
     {
         private IDictionary<string, IList<string>> _headers = new Dictionary<string, IList<string>>();
 
-        public int Count => _headers.Count;
+        internal int Count => _headers.Count;
 
-        public HeaderCollection()
+        internal HeaderCollection()
         {
         }
 
-        public HeaderCollection(IEnumerable<Tuple<string, string>> initialValues)
+        internal HeaderCollection(IEnumerable<Tuple<string, string>> initialValues)
         {
             if (initialValues == null)
                 return;
@@ -23,7 +23,7 @@ namespace Fulcrum.Models
                 Add(h.Item1, h.Item2);
         }
 
-        public void Add(string header, string value)
+        internal void Add(string header, string value)
         {
             // We'll do a case insensitive comparison of the header keys
             foreach (var k in _headers.Keys)
@@ -40,7 +40,7 @@ namespace Fulcrum.Models
             _headers[header].Add(value);
         }
 
-        public void Add(HeaderCollection collection)
+        internal void Add(HeaderCollection collection)
         {
             var newHeaders = collection.GetHeaders();
 
@@ -48,7 +48,7 @@ namespace Fulcrum.Models
                 Add(header.Item1, header.Item2);
         }
 
-        public IEnumerable<Tuple<string, string>> GetHeaders()
+        internal IEnumerable<Tuple<string, string>> GetHeaders()
         {
             return _headers.Select(kvp => Tuple.Create(kvp.Key, string.Join(";", kvp.Value)));
         }        

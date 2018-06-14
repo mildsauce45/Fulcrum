@@ -68,7 +68,6 @@
     <Compile Include="Exceptions\NonPublicInterfaceException.cs" />
     <Compile Include="HttpCallFactory.cs" />
     <Compile Include="HttpCallProxies.cs" />
-    <Compile Include="HttpRequestState.cs" />
     <Compile Include="IAuthenticationProvider.cs" />
     <Compile Include="Models\EndpointConfig.cs" />
     <Compile Include="Models\HeaderCollection.cs" />

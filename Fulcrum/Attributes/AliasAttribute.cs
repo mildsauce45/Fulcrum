@@ -5,7 +5,7 @@ using System.Reflection;
 namespace Fulcrum
 {
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-    public class AliasAttribute : ParameterAttribute
+    public sealed class AliasAttribute : ParameterAttribute
     {
         public string Alias { get; }
 

@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Fulcrum
 {
-    public class BodyAttribute : ParameterAttribute
+    public sealed class BodyAttribute : ParameterAttribute
     {
         public string ContentType { get; }
 

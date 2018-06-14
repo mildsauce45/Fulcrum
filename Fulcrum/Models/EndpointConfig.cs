@@ -11,19 +11,18 @@ namespace Fulcrum.Models
     internal class EndpointConfig
     {
         private Type[] _paramterTypes;
-
-        public string Route { get; private set; }
-        public HeaderCollection EndpointHeaders { get; }
-        public HttpRequestMethod Method { get; private set; }
-
-        public string Name => _endpointMethod.Name;
-        public Type ReturnType => _endpointMethod.ReturnType;
-        public Type[] ParamterTypes => _paramterTypes ?? (_paramterTypes = _endpointMethod.GetParameters().Select(pi => pi.ParameterType).Concat(new[] { ReturnType }).ToArray());
-
         private MethodInfo _endpointMethod;
         private ParameterConfig[] _parameterConfigs;
 
-        public EndpointConfig(MethodInfo endpointMethod, IEnumerable<Attribute> attributes)
+        internal string Route { get; private set; }
+        internal HeaderCollection EndpointHeaders { get; }
+        internal HttpRequestMethod Method { get; private set; }
+
+        internal string Name => _endpointMethod.Name;
+        internal Type ReturnType => _endpointMethod.ReturnType;
+        internal Type[] ParamterTypes => _paramterTypes ?? (_paramterTypes = _endpointMethod.GetParameters().Select(pi => pi.ParameterType).Concat(new[] { ReturnType }).ToArray());
+
+        internal EndpointConfig(MethodInfo endpointMethod, IEnumerable<Attribute> attributes)
         {
             _endpointMethod = endpointMethod;
 

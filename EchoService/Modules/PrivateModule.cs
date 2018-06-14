@@ -4,6 +4,7 @@ using EchoService.Models;
 using Nancy;
 using Nancy.Authentication.Stateless;
 using Nancy.Extensions;
+using Nancy.Responses;
 
 namespace EchoService.Modules
 {
@@ -13,12 +14,10 @@ namespace EchoService.Modules
             : base("private")
         {
             StatelessAuthentication.Enable(this, SimpleOAuthConfiguration.GetOAuthConfiguration());
+            this.AddBeforeHookOrExecute(ctx => ctx.CurrentUser == null ? new HtmlResponse(HttpStatusCode.Unauthorized) : null);
 
             Get["/resource/{key}"] = _ =>
             {
-                if (Context.CurrentUser == null)
-                    return HttpStatusCode.Unauthorized;
-
                 var resp = new GetRequest { Route = Request.Path, User = Context.CurrentUser.UserName };
 
                 this.AddQueryParams(resp);
@@ -28,9 +27,6 @@ namespace EchoService.Modules
 
             Post["/"] = _ =>
             {
-                if (Context.CurrentUser == null)
-                    return HttpStatusCode.Unauthorized;
-
                 var resp = ContentRequest.Post(Request.Path, Context.CurrentUser.UserName, Request.Body.AsString());
 
                 return Response.AsJson(resp);
@@ -38,9 +34,6 @@ namespace EchoService.Modules
 
             Put["/"] = _ =>
             {
-                if (Context.CurrentUser == null)
-                    return HttpStatusCode.Unauthorized;
-
                 var resp = ContentRequest.Put(Request.Path, Context.CurrentUser.UserName, Request.Body.AsString());
 
                 return Response.AsJson(resp);
@@ -48,9 +41,6 @@ namespace EchoService.Modules
 
             Delete["/resource/{key}"] = _ =>
             {
-                if (Context.CurrentUser == null)
-                    return HttpStatusCode.Unauthorized;
-
                 var resp = new DeleteRequest { Route = Request.Path, User = Context.CurrentUser.UserName };
 
                 this.AddQueryParams(resp);

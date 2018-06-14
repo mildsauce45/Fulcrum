@@ -34,6 +34,15 @@ namespace Fulcrum
         public TRet FourParamCall<TIn1, TIn2, TIn3, TIn4, TRet>(TIn1 parm1, TIn2 parm2, TIn3 parm3, TIn4 parm4) =>
             MakeHttpCall<TRet>(parm1, parm2, parm3, parm4);
 
+        public TRet FiveParamCall<TIn1, TIn2, TIn3, TIn4, TIn5, TRet>(TIn1 parm1, TIn2 parm2, TIn3 parm3, TIn4 parm4, TIn5 parm5) =>
+            MakeHttpCall<TRet>(parm1, parm2, parm3, parm4, parm5);
+
+        public TRet SixParamCall<TIn1, TIn2, TIn3, TIn4, TIn5, TIn6, TRet>(TIn1 parm1, TIn2 parm2, TIn3 parm3, TIn4 parm4, TIn5 parm5, TIn6 parm6) =>
+            MakeHttpCall<TRet>(parm1, parm2, parm3, parm4, parm5, parm6);
+
+        public TRet SevenParamCall<TIn1, TIn2, TIn3, TIn4, TIn5, TIn6, TIn7, TRet>(TIn1 parm1, TIn2 parm2, TIn3 parm3, TIn4 parm4, TIn5 parm5, TIn6 parm6, TIn7 parm7) =>
+            MakeHttpCall<TRet>(parm1, parm2, parm3, parm4, parm5, parm6, parm7);
+
         #endregion
 
         private TRet MakeHttpCall<TRet>(params object[] parms) =>

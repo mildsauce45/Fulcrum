@@ -3,7 +3,6 @@ using Fulcrum.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Fulcrum
 {
@@ -36,27 +35,7 @@ namespace Fulcrum
                 .CreateDelegate(proxyCallInfo.Item2.MakeGenericType(methodTypes), proxy);
 
             addImplMethod.Invoke(context, new object[] { endpoint.Name, proxiedCall });
-        }
-
-        private static object CreateClientCall(RequestSettings settings, EndpointConfig endpoint)
-        {
-            switch (endpoint.Method)
-            {
-                case HttpRequestMethod.GET:
-                    return CreateGetCall(settings, endpoint);
-                default:
-                    throw new InvalidOperationException("I only support GET right now");
-            }
-        }
-
-        private static object CreateGetCall(RequestSettings settings, EndpointConfig endpoint)
-        {
-            //using (var client = new HttpClient())
-            //{
-            //    var baseUrl = $"{settings.BaseUrl}{endpoint.Route}";
-            //}
-            return null;
-        }
+        }        
 
         private static Tuple<string, Type> GetProxyCallInfo(int numParams)
         {
@@ -72,8 +51,14 @@ namespace Fulcrum
                     return Tuple.Create(nameof(HttpCallProxy.ThreeParamCall), typeof(Func<,,,>));
                 case 5:
                     return Tuple.Create(nameof(HttpCallProxy.FourParamCall), typeof(Func<,,,,>));
+                case 6:
+                    return Tuple.Create(nameof(HttpCallProxy.FiveParamCall), typeof(Func<,,,,,>));
+                case 7:
+                    return Tuple.Create(nameof(HttpCallProxy.SixParamCall), typeof(Func<,,,,,,>));
+                case 8:
+                    return Tuple.Create(nameof(HttpCallProxy.SevenParamCall), typeof(Func<,,,,,,,>));
                 default:
-                    throw new NotImplementedException("Up to 7 parameters will be supported");
+                    throw new NotImplementedException("Up to 7 IN parameters will be supported");
             }
         }
     }

@@ -11,7 +11,7 @@ namespace Fulcrum
     /// If you'd prefer not to do this, pass in a IAuthenticationProvider instance when calling Connect.To&lt;T&gt;
     /// </para>
     /// </summary>
-    public class AuthorizationAttribute : HeaderAttribute
+    public sealed class AuthorizationAttribute : HeaderAttribute
     {
         public TokenType TokenType { get; }
 

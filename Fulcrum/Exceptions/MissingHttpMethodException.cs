@@ -7,6 +7,6 @@ namespace Fulcrum
         public MissingHttpMethodException()
             : base("Interface is missing at least one method marked up with a MethodAttribute (GetAttribute, PostAttribute, etc)")
         {
-        }        
+        }
     }
 }
