@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Fulcrum.Emitter
 {
@@ -19,6 +17,7 @@ namespace Fulcrum.Emitter
         private static readonly Type OBJ_ARR_TYPE = typeof(object[]);
         private static readonly Type DELEGATE_TYPE = typeof(Delegate);
         private static readonly Type DEL_DICT_TYPE = typeof(IDictionary<string, Delegate>);
+        private static readonly Type VOID_TYPE = typeof(void);
 
         #endregion
 
@@ -138,7 +137,7 @@ namespace Fulcrum.Emitter
 
             if (hasImplementation)
             {
-                if (mi.ReturnType == typeof(void))
+                if (mi.ReturnType == VOID_TYPE)
                 {
                     AddVoidDelegateInvocation(mi, context, parameterTypes, mGenerator);
                 }
@@ -147,7 +146,7 @@ namespace Fulcrum.Emitter
                     AddDelegateInvocation(mi, context, parameterTypes, mGenerator);
                 }
             }
-            else if (mi.ReturnType != typeof(void))
+            else if (mi.ReturnType != VOID_TYPE)
             {
                 var localBuilder = mGenerator.DeclareLocal(mi.ReturnType);
 
@@ -290,10 +289,14 @@ namespace Fulcrum.Emitter
 
         private static Type GetBoxedType(Type unboxedType)
         {
-            if (unboxedType == typeof(int))
+            if (unboxedType == typeof(short))
+                return typeof(System.Int16);
+            else if (unboxedType == typeof(int))
                 return typeof(System.Int32);
             else if (unboxedType == typeof(long))
                 return typeof(System.Int64);
+            else if (unboxedType == typeof(bool))
+                return typeof(System.Boolean);            
 
             return null;
         }

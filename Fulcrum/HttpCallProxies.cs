@@ -47,9 +47,5 @@ namespace Fulcrum
 
         private TRet MakeHttpCall<TRet>(params object[] parms) =>
             HttpCallFactory.MakeCall<TRet>(_endpointConfig, _settings, parms);
-
-        #region Helper Methods                        
-
-        #endregion
     }
 }

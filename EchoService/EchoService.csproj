@@ -96,6 +96,7 @@
     <Compile Include="Models\RequestBase.cs" />
     <Compile Include="Modules\PrivateModule.cs" />
     <Compile Include="Modules\PublicModule.cs" />
+    <Compile Include="Modules\ScalarModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
