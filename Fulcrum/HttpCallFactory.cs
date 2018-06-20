@@ -101,8 +101,8 @@ namespace Fulcrum
         {
             var returnType = typeof(TRet);
             if (returnType.GenericTypeArguments.Length == 0)
-                // I'm going to limit this to Task and Task<T> so we should just be able to return a completed task here
-                throw new NotImplementedException("Untyped tasks are not implemented yet");
+                // This is just an untyped Task
+                return Task.CompletedTask;
 
             returnType = returnType.GetGenericArguments()[0];
 

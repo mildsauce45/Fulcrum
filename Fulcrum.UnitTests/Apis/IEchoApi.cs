@@ -17,5 +17,8 @@ namespace Fulcrum.UnitTests.Apis
 
         [Post("private")]        
         Task<Response> Post([Body] Set set);
+
+        [Post("private")]
+        Task PostUntyped([Body] Set set);
     }
 }

@@ -70,5 +70,19 @@ namespace Fulcrum.UnitTests
             set.Code.Should().BeEquivalentTo(setFromServer.Code);
             set.Name.Should().BeEquivalentTo(setFromServer.Name);
         }
+
+        [TestMethod]
+        public async Task Post_Handles_UntypedTask()
+        {
+            var liveApi = Connect.To<IEchoApi>(TestBaseUrl, new SimpleAuthProvider());
+
+            var task = liveApi.PostUntyped(new Set { Code = "aer", Name = "Aether Revolt" });
+
+            task.Should().NotBeNull();
+
+            await task;
+
+            task.IsCompleted.Should().BeTrue();
+        }
     }
 }

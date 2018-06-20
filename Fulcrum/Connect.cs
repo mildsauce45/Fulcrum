@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Fulcrum
 {
     public static class Connect
     {
+        private static readonly Type UntypedTaskType = typeof(Task);
+
         private static IDictionary<Type, IEnumerable<EndpointConfig>> _validApiInterfaces =
             new Dictionary<Type, IEnumerable<EndpointConfig>>();
 
@@ -59,7 +62,12 @@ namespace Fulcrum
             {
                 var customAttributes = m.GetCustomAttributes();
                 if (customAttributes.OfType<MethodAttribute>().Any())
-                    decoratedMethods.Add(new EndpointConfig(m, customAttributes.OfType<Attribute>()));
+                {
+                    if (UntypedTaskType.IsAssignableFrom(m.ReturnType)) // Catches both Task and Task<T> because Task<T> inherits from Task
+                        decoratedMethods.Add(new EndpointConfig(m, customAttributes.OfType<Attribute>()));
+                    else
+                        throw new SynchronousEndpointException(m.Name);
+                }
             }
 
             if (decoratedMethods.Count > 0)
@@ -68,7 +76,7 @@ namespace Fulcrum
 
         private static void PrimeApiHeaderDictionary(Type apiType)
         {
-            var interfaceAttributes = apiType.GetCustomAttributes<Attribute>();            
+            var interfaceAttributes = apiType.GetCustomAttributes<Attribute>();
 
             var globalHeaders = new HeaderCollection(interfaceAttributes.OfType<HeaderAttribute>().Select(ha => ha.GetHeader(null)));
 

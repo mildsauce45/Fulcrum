@@ -1,13 +1,29 @@
 ﻿using FluentAssertions;
 using Fulcrum.UnitTests.Apis;
+using Fulcrum.UnitTests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Threading.Tasks;
 
 namespace Fulcrum.UnitTests
 {
     [TestClass]
     public class ConnectTests
     {
+        public interface ISyncApi
+        {
+            [Get("/sets/{setCode}")]
+            Set GetSet(string setCode);
+        }
+
+        public interface IPseudoSyncApi
+        {
+            Set UpdateSet(Set set);
+
+            [Get("/sets/{setCode}")]
+            Task<Set> GetSet(string setCode);
+        }
+
         [TestMethod]
         public void Connect_To_ReturnsMockedInterface()
         {
@@ -42,6 +58,28 @@ namespace Fulcrum.UnitTests
             Action action = () => Connect.To<INonPublicInterface>("bar");
 
             action.Should().Throw<NonPublicInterfaceException>("because we cannot use emit a non public interface");
+        }
+
+        [TestMethod]
+        public void Connect_To_ThrowsForNonAsyncMethod()
+        {
+            Action action = () => Connect.To<ISyncApi>("https://doesntmatter.io");
+
+            action.Should().Throw<SynchronousEndpointException>("because the interface contains a synchronous method.");
+        }
+
+        [TestMethod]
+        public void Connect_To_IgnoresUndecoratedSyncMethod()
+        {
+            IPseudoSyncApi api = null;
+
+            Action action = () => api = Connect.To<IPseudoSyncApi>("https://doesntmatter.org");
+
+            action.Should().NotThrow("because the only decorated method is async");
+
+            var s = api.UpdateSet(new Set());
+
+            s.Should().BeNull("because by default the emitter library returns the default for the type if no implmentation is provided");
         }
     }
 }

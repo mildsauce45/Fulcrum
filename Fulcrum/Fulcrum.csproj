@@ -66,6 +66,7 @@
     <Compile Include="Connect.cs" />
     <Compile Include="Exceptions\MissingHttpMethodException.cs" />
     <Compile Include="Exceptions\NonPublicInterfaceException.cs" />
+    <Compile Include="Exceptions\SynchronousEndpointException.cs" />
     <Compile Include="HttpCallFactory.cs" />
     <Compile Include="HttpCallProxies.cs" />
     <Compile Include="IAuthenticationProvider.cs" />
